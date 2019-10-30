@@ -1,22 +1,22 @@
-#include <Servo.h>
+#include <Servo.h>                   // This includes the servo library in our sketch
 
-Servo base;
+Servo base;                          //  These five lines establish the servo motor objects in our sketch
 Servo armone;  
 Servo armtwo;  
 Servo armthree;  
 Servo gripper;  
 
-int joy1x = A1;
+int joy1x = A1;                      //  These five lines are variables for pin assignments for the joysticks
 int joy1y = A0;
 int joy2x = A3;
 int joy2y = A2;
 int joy1sw = 2;
 
-int swivel = 0;
-int arms = 0;
-int motor = 0;
+int swivel = 0;                      //  This variable stores the value of our base servo
+int arms = 0;                        //  This variable stores the value of our arm servos
+int motor = 0;                       //  This variable stores the value of which motor is selected
 
-int j1x;
+int j1x;                             //  These variables store current AnalogRead values from joystick
 int j1y;
 int j2x;
 int j2y;
@@ -27,19 +27,19 @@ unsigned long lastDebounceTime = 0;   // the last time the output pin was toggle
 unsigned long debounceDelay = 100;    // the debounce time; increase if the output flickers
 
 void setup() {
-  base.attach(6);
+  base.attach(6);                     // These five lines attach the five servos to five separate pins
   armone.attach(9);
   armtwo.attach(8);
   armthree.attach(7);
   gripper.attach(5);
 
-  pinMode(joy1x, INPUT);
+  pinMode(joy1x, INPUT);              // These five lines set the pin mode to INPUT for our joystick axes and switches
   pinMode(joy1y, INPUT);
   pinMode(joy2x, INPUT);
   pinMode(joy2y, INPUT);
   pinMode(joy1sw, INPUT);
 
-  base.write(90);     
+  base.write(90);                     // At the end of the setup function, set all five motors to 90 degrees
   delay(250); 
   armone.write(90); 
   delay(250);
@@ -50,26 +50,27 @@ void setup() {
   gripper.write(90);           
   delay(1000); 
 
-//  Serial.begin(9600);
+//  Serial.begin(9600);               // Begin serial communication with the computer, comment out if not debugging
 }
 
 void loop() {
-  joypoll();
+  joypoll();                          // This function gets the current analog values from the joysticks
 //joyreport();
-  joymap();
-  changeMotor();
-  motorWrite();
+  joymap();                           // This function maps the analog values to 0-180 degrees for the servos
+  changeMotor();                      // This function changes which motor is selected to move with the joystick
+  motorWrite();                       // With the correct motor selected, this function writes the position to the servo
 }
 
-void joypoll(){
+void joypoll(){                       // This function stores the joystick readings in variables
   j1x = analogRead(joy1x);
   j1y = analogRead(joy1y);
   j2x = analogRead(joy2x);
   j2y = analogRead(joy2y);
 }
 
-void joyreport(){
-  Serial.print("J1X: ");
+/*
+void joyreport(){                     // This function is for debugging purposes, comment out if not debugging.
+  Serial.print("J1X: ");              // Writes joystick position to Serial Monitor
   Serial.print(j1x);
   Serial.print(" | J1Y: ");
   Serial.print(j1y);
@@ -78,14 +79,15 @@ void joyreport(){
   Serial.print(" | J2Y: ");
   Serial.println(j2y);
 }
+*/
 
-void joymap() {
-  swivel = map(j1x, 0, 1023, 0, 180);
+void joymap() {                         //  This function takes the 0-1023 values from the joystick, and maps them
+  swivel = map(j1x, 0, 1023, 0, 180);   //  to the 0-180 degrees position of the servos
   arms = map(j2y, 0, 1023, 0, 180);
-  Serial.println(arms);
+//Serial.println(arms);
 }
 
-void motorWrite() {
+void motorWrite() {                     // This function writes the current mapped joystick value to the selected motor
 base.write(swivel);
  if (motor == 1){
   motor = 2;
@@ -129,10 +131,10 @@ void changeMotor() {
     if (reading != buttonState) {
       buttonState = reading;
 
-      if (buttonState == LOW) {
-        motor = motor + 1;
-        if (motor > 5) {
-          motor = 1;
+      if (buttonState == LOW) {  // If the button is pressed
+        motor = motor + 1;       // increase the 'motor' variable by 1
+        if (motor > 5) {         // If the 'motor' variable is greater than 5
+          motor = 1;             // then set the 'motor' variable back to 1
         }
       }
     }
