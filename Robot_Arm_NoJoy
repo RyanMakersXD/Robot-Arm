@@ -1,0 +1,42 @@
+#include <Servo.h>
+
+Servo base;
+Servo armone;  
+Servo armtwo;  
+Servo armthree;  
+Servo gripper;  
+
+void setup() {
+  base.attach(6);
+  armone.attach(9);
+  armtwo.attach(8);
+  armthree.attach(7);
+  gripper.attach(5);
+
+
+  base.write(90);     
+  delay(250); 
+  armone.write(90); 
+  delay(250);
+  armtwo.write(90); 
+  delay(250);
+  armthree.write(90); 
+  delay(250);
+  gripper.write(90);           
+  delay(1000); 
+
+
+}
+
+void loop() {
+  base.write(90);     
+  delay(250); 
+  armone.write(90); 
+  delay(250);
+  armtwo.write(90); 
+  delay(250);
+  armthree.write(90); 
+  delay(250);
+  gripper.write(90);           
+  delay(1000); 
+}
