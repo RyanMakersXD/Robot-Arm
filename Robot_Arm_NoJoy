@@ -29,14 +29,24 @@ void setup() {
 }
 
 void loop() {
-  base.write(90);     
-  delay(250); 
-  armone.write(90); 
-  delay(250);
-  armtwo.write(90); 
-  delay(250);
-  armthree.write(90); 
-  delay(250);
-  gripper.write(90);           
+  base.write(25);     
+  delay(1000); 
+  gripper.write(5);          
+  delay(1000); 
+  armone.write(110);
+  delay(500);
+  armtwo.write(110);
+  delay(500);
+  armthree.write(110);
+  delay(500);
+  gripper.write(90);          
+  delay(1000); 
+  armone.write(90);
+  delay(500);
+  armtwo.write(90);
+  delay(500);
+  armthree.write(90);
+  delay(500);
+  base.write(155);     
   delay(1000); 
 }
