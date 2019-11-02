@@ -1,5 +1,5 @@
 #include <Servo.h>                     //  This includes the servo library in our sketch.  Libraries like this save programmers
-                                       //  a lot of time.
+                                       //  A LOT of time and headaches.
 
 Servo base;                            //  These five lines establish the servo motor objects in our sketch
 Servo armone;  
@@ -40,7 +40,7 @@ void setup() {                          // the setup() function runs once when t
   pinMode(joy2y, INPUT);                // Configure joystick 2 y-axis pin as an INPUT
   pinMode(joy1sw, INPUT);               // Configure joystick switch pins as an INPUT
 
-  base.write(90);                       // At the end of the setup function, set all five motors to 90 degrees
+  base.write(70);                       // At the end of the setup function, set all five motors to 90 degrees
   delay(250);                           // with quarter-second delays between each motor write
   armone.write(90); 
   delay(250);
@@ -60,6 +60,7 @@ void loop() {                           // the loop() runs over and over continu
   joymap();                             // This function maps the analog values to the 0-180 degree values for the servos
   changeMotor();                        // This function changes which motor is selected to move with the joystick button
   motorWrite();                         // With the correct motor selected, this function writes the position to the servo
+delay(70);
 }
 
 void joypoll(){                         // This function stores the joystick readings in variables
