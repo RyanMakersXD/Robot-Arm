@@ -4,9 +4,9 @@
  * we program.  Each individual motor movement is written sequentially
  * in the loop() function.
  * 
- * You can see how easy it is to control servos when we're not mapping
- * inputs from analog joysticks.  You need to configure three things
- * to control servos: 
+ * You can see how little code it takes to control servos when we're not
+ * mapping inputs from analog joysticks.  You need to configure three
+ * things to control servos: 
  * 1. Include the Servo.h library
  * 2. Create the Servo object using 'Servo <name>;' 
  * 3. Attach the servo object to a pin using '<name>.attach(pin)'
@@ -23,7 +23,7 @@
 
 #include <Servo.h>                     // include the Servo.h library
 
-  Servo base;                            // create our five servos
+  Servo base;                          // create our five servo objects
   Servo armone;  
   Servo armtwo;  
   Servo armthree;  
@@ -37,7 +37,7 @@ void setup() {
   gripper.attach(5);
 
 
-  base.write(90);                      // Set all motor positions to 90 degrees at bootup  
+  base.write(90);                      // Set all motor positions to 90 degrees at startup  
   delay(250); 
   armone.write(70); 
   delay(250);
