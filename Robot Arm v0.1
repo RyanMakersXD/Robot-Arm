@@ -13,9 +13,9 @@ int joy2x = A3;                        //  Assign the value 'A3' to the variable
 int joy2y = A2;                        //  Assign the value 'A2' to the variable 'joy2y'
 int joy1sw = 2;                        //  Assign the value '2' to the variable 'joy1sw'
 
-int swivel = 0;                        //  This variable stores the value of our base servo
-int arms = 0;                          //  This variable stores the value of our arm servos
-int motor = 0;                         //  This variable stores the value of which motor is selected
+int swivel = 0;                        //  This variable stores the value for our base servo position
+int arms = 0;                          //  This variable stores the value for our arm servo position
+int motor = 0;                         //  This variable stores the value for which motor is selected
 
 int j1x;                               //  Variable to store analog value for joystick 1 x-axis
 int j1y;                               //  Variable to store analog value for joystick 1 y-axis
@@ -103,9 +103,9 @@ base.write(swivel);                     // Write the 'swivel' value to the base 
  }
  if (motor == 5){                       // If motor 5 is selected...
     if (arms > 90){                     // ...then limit the range of position values to 0-90.  This is the gripper motor.
-    arms = 90;                          // If we tried to position this motor at great than 90 degrees, then the gripper arms
+    arms = 90;                          // If we tried to position this motor at >90 degrees, then the gripper arms
   }                                     // will fall off of the gripper motor.
-  gripper.write(arms);                  // after limiting the value to less than 90, write this value to the gripper motor
+  gripper.write(arms);                  // after limiting the value to <90, write this value to the gripper motor
  }
 }
 
