@@ -1,5 +1,5 @@
 #include <Servo.h>                     //  This includes the servo library in our sketch.  Libraries like this save programmers
-                                       //  a lot of headaches.
+                                       //  a lot of time.
 
 Servo base;                            //  These five lines establish the servo motor objects in our sketch
 Servo armone;  
